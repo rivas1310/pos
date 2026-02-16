@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>POS Offline Ready</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>POS Offline Ready</h1>
+        <p>Vende sin internet y sincroniza automáticamente al volver la conexión.</p>
+      </header>
+
+      <section class="status-grid">
+        <article>
+          <h2>Estado de red</h2>
+          <p id="networkStatus" class="status-pill">Detectando...</p>
+        </article>
+        <article>
+          <h2>Cola pendiente</h2>
+          <p><strong id="pendingCount">0</strong> ventas por sincronizar</p>
+        </article>
+        <article>
+          <h2>Sincronizadas</h2>
+          <p><strong id="syncedCount">0</strong> ventas enviadas</p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Nueva venta</h2>
+        <form id="saleForm">
+          <label>
+            Producto
+            <input id="product" name="product" type="text" required placeholder="Ej: Café" />
+          </label>
+          <label>
+            Cantidad
+            <input id="quantity" name="quantity" type="number" min="1" required value="1" />
+          </label>
+          <label>
+            Precio (MXN)
+            <input id="price" name="price" type="number" min="0" step="0.01" required placeholder="0.00" />
+          </label>
+          <button type="submit">Registrar venta</button>
+        </form>
+      </section>
+
+      <section>
+        <div class="section-header">
+          <h2>Últimas ventas</h2>
+          <button id="syncNow" type="button">Sincronizar ahora</button>
+        </div>
+        <ul id="salesList" class="sales-list"></ul>
+      </section>
+
+      <section id="installSection" class="install-box hidden">
+        <h2>Instalar POS</h2>
+        <p>Puedes instalar esta app en tu dispositivo para usarla como app nativa.</p>
+        <button id="installBtn" type="button">Instalar aplicación</button>
+      </section>
+
+      <p id="message" class="message" aria-live="polite"></p>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
